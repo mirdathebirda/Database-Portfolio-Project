@@ -4,9 +4,8 @@ A database for project portfolio sites used to display personal projects to pote
 
 This README would normally document whatever steps are necessary to get the application up and running.
 
-Things you may want to cover:
-
-* Ruby version
+* Ruby version : 2.2.4
+* Rails version:  rails-5.0.0.1
 
 * System dependencies
 
