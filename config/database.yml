@@ -50,6 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: frank_production
-  username: frank
-  password: <%= ENV['FRANK_DATABASE_PASSWORD'] %>
+  url: <%= ENV['CLEARDB_DATABASE_URL'] %>
