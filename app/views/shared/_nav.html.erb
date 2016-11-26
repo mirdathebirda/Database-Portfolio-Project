@@ -10,7 +10,7 @@
             <li>
               <%= link_to('Create new blog', '/blogs/new', :class => 'btn btn-default')  %>
             </li>
-            <% if !current_user.blogs.empty? %>
+            <% if current_user && !current_user.blogs.empty? %>
               <%= link_to('Manage blogs', "/users/#{current_user.id}/blogs", :class => 'btn btn-default')  %>
             <% end %>
             <%= link_to('Browse blogs', '/blogs', :class => 'btn btn-default')  %>
