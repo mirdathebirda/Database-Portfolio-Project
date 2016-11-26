@@ -1,0 +1,9 @@
+<h1>New Blog</h1>
+
+<%= form_for :blog, url: '/blogs' do |f| %>
+
+  Title: <%= f.text_field :title %>
+  Description <%= f.text_area :description %>
+  <%= f.submit "Submit" %>
+
+<% end %>

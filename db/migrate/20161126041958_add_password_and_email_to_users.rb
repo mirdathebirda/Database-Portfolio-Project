@@ -4,8 +4,8 @@ class AddPasswordAndEmailToUsers < ActiveRecord::Migration[5.0]
     execute "ALTER TABLE user ADD COLUMN password_digest VARCHAR(100);" 
     execute "ALTER TABLE user ADD COLUMN email VARCHAR(52) UNIQUE;"
 
-    execute "ALTER TABLE role MODIFY COLUMN name VARCHAR(52) UNIQUE"
-    execute "ALTER TABLE user DROP FOREIGN KEY user_ibfk_1"
+    execute "ALTER TABLE role MODIFY COLUMN name VARCHAR(52) UNIQUE;"
+    execute "ALTER TABLE user DROP FOREIGN KEY user_ibfk_1;"
     execute "ALTER TABLE user DROP COLUMN role;"
     execute "ALTER TABLE user ADD COLUMN role INT;"
     execute "ALTER TABLE role DROP COLUMN roleID;"
@@ -14,7 +14,7 @@ class AddPasswordAndEmailToUsers < ActiveRecord::Migration[5.0]
   end
 
   def down
-    execute "ALTER TABLE user DROP FOREIGN KEY user_ibfk_1"
+    execute "ALTER TABLE user DROP FOREIGN KEY user_ibfk_1;"
     execute "ALTER TABLE role DROP COLUMN id;"
     execute "ALTER TABLE role ADD COLUMN roleID INT PRIMARY KEY AUTO_INCREMENT;"
     execute "ALTER TABLE user ADD FOREIGN KEY (role) REFERENCES role(roleID);"

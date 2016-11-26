@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161126041958) do
+ActiveRecord::Schema.define(version: 20161126194928) do
 
-  create_table "blog", primary_key: "blogID", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "admin", limit: 52
-    t.index ["admin"], name: "admin", using: :btree
-    t.index ["blogID"], name: "blogID", unique: true, using: :btree
+  create_table "blog", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "owner"
+    t.string  "title",       limit: 52
+    t.text    "description", limit: 65535
+    t.index ["owner"], name: "admin", using: :btree
   end
 
   create_table "category", primary_key: "type", id: :string, limit: 52, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -36,29 +37,23 @@ ActiveRecord::Schema.define(version: 20161126041958) do
     t.index ["post"], name: "post", using: :btree
   end
 
-  create_table "post", primary_key: "postID", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "post", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "user",    limit: 52,                  null: false
     t.string   "tag",     limit: 52
     t.string   "title",   limit: 52
     t.datetime "date"
     t.string   "comment", limit: 100
     t.boolean  "isLiked",             default: false
-    t.integer  "blogID"
-    t.index ["blogID"], name: "blogID", unique: true, using: :btree
-    t.index ["postID"], name: "postID", unique: true, using: :btree
+    t.integer  "blog"
+    t.index ["blog"], name: "blogID", unique: true, using: :btree
     t.index ["tag"], name: "tag", using: :btree
-  end
-
-  create_table "postcategories", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "postID"
-    t.string  "category", limit: 52
-    t.index ["category"], name: "category", using: :btree
-    t.index ["postID"], name: "postID", unique: true, using: :btree
   end
 
   create_table "role", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 52
     t.index ["name"], name: "name", unique: true, using: :btree
+    t.index ["name"], name: "name_2", unique: true, using: :btree
+    t.index ["name"], name: "name_3", unique: true, using: :btree
   end
 
   create_table "user", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -71,14 +66,12 @@ ActiveRecord::Schema.define(version: 20161126041958) do
     t.index ["role"], name: "role", using: :btree
   end
 
-  add_foreign_key "blog", "user", column: "admin", primary_key: "name", name: "blog_ibfk_1"
-  add_foreign_key "comment", "post", column: "post", primary_key: "postID", name: "comment_ibfk_1"
+  add_foreign_key "blog", "user", column: "owner", name: "blog_ibfk_1"
+  add_foreign_key "comment", "post", column: "post", name: "comment_ibfk_1"
   add_foreign_key "comment", "user", column: "user", primary_key: "name", name: "comment_ibfk_2"
-  add_foreign_key "likes", "post", column: "post", primary_key: "postID", name: "likes_ibfk_1"
+  add_foreign_key "likes", "post", column: "post", name: "likes_ibfk_1"
   add_foreign_key "likes", "user", column: "User", primary_key: "name", name: "likes_ibfk_2"
-  add_foreign_key "post", "blog", column: "blogID", primary_key: "blogID", name: "post_ibfk_2"
+  add_foreign_key "post", "blog", column: "blog", name: "post_ibfk_2"
   add_foreign_key "post", "category", column: "tag", primary_key: "type", name: "post_ibfk_1"
-  add_foreign_key "postcategories", "category", column: "category", primary_key: "type", name: "postcategories_ibfk_2"
-  add_foreign_key "postcategories", "post", column: "postID", primary_key: "postID", name: "postcategories_ibfk_1"
   add_foreign_key "user", "role", column: "role", name: "user_ibfk_1"
 end

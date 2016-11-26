@@ -7,6 +7,13 @@
               <a href="/" class='brand'>Not Blogger <i class="fa fa-pencil fa-lg"></i>
               </a>
             </li>
+            <li>
+              <%= link_to('Create new blog', '/blogs/new', :class => 'btn btn-default')  %>
+            </li>
+            <% if !current_user.blogs.empty? %>
+              <%= link_to('Manage blogs', "/users/#{current_user.id}/blogs", :class => 'btn btn-default')  %>
+            <% end %>
+            <%= link_to('Browse blogs', '/blogs', :class => 'btn btn-default')  %>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
