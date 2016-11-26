@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1) do
+ActiveRecord::Schema.define(version: 20161126041958) do
 
   create_table "blog", primary_key: "blogID", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "admin", limit: 52
@@ -56,14 +56,17 @@ ActiveRecord::Schema.define(version: 1) do
     t.index ["postID"], name: "postID", unique: true, using: :btree
   end
 
-  create_table "role", primary_key: "roleID", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "role", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", limit: 52
-    t.index ["roleID"], name: "roleID", unique: true, using: :btree
+    t.index ["name"], name: "name", unique: true, using: :btree
   end
 
-  create_table "user", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string  "name", limit: 52
+  create_table "user", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "name",            limit: 52
+    t.string  "password_digest", limit: 100
+    t.string  "email",           limit: 52
     t.integer "role"
+    t.index ["email"], name: "email", unique: true, using: :btree
     t.index ["name"], name: "name", unique: true, using: :btree
     t.index ["role"], name: "role", using: :btree
   end
@@ -77,5 +80,5 @@ ActiveRecord::Schema.define(version: 1) do
   add_foreign_key "post", "category", column: "tag", primary_key: "type", name: "post_ibfk_1"
   add_foreign_key "postcategories", "category", column: "category", primary_key: "type", name: "postcategories_ibfk_2"
   add_foreign_key "postcategories", "post", column: "postID", primary_key: "postID", name: "postcategories_ibfk_1"
-  add_foreign_key "user", "role", column: "role", primary_key: "roleID", name: "user_ibfk_1"
+  add_foreign_key "user", "role", column: "role", name: "user_ibfk_1"
 end
