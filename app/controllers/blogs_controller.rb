@@ -16,9 +16,10 @@ class BlogsController < ApplicationController
 
   def create
     cols = blog_params.keys.join(", ")
-    vals = blog_params.values.map{|val| "\'#{val}\'" }.join(", ")
+    vals = blog_params.values.map{|val| %Q(#{Blog.sanitize(val)}) }.join(", ")
     Blog.connection.execute("INSERT INTO blog (owner, #{cols}) VALUES (#{current_user.id}, #{vals});")
-    redirect_to "/users/#{current_user.id}/blogs"
+    blog = Blog.find_by_sql("SELECT * FROM blog WHERE owner = #{current_user.id} ORDER BY id DESC LIMIT 1;").first
+    redirect_to "/blogs/#{blog.id}"
   end
 
   def edit
@@ -26,7 +27,7 @@ class BlogsController < ApplicationController
   end
 
   def update
-    updates = blog_params.map{|k, v| ["#{k}=\'#{v}\'"]}.join(", ")
+    updates = blog_params.map{|k, v| [%Q(#{k}=#{Blog.sanitize(v)})]}.join(", ")
     Blog.connection.execute("UPDATE blog SET #{updates} WHERE id = #{params[:id]};")
     redirect_to "/blogs/#{params[:id]}"
   end

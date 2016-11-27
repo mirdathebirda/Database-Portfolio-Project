@@ -1,0 +1,7 @@
+ <% if current_user && @post.id == current_user.id %>
+  <div class="pull-right">
+     <%= link_to('Edit', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/edit", :class => 'btn btn-default')  %>
+  </div>
+<% end %>
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>

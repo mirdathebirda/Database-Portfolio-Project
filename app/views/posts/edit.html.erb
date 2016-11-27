@@ -1,0 +1,9 @@
+<h1>Edit Post</h1>
+
+<%= form_for :post, url: "/blogs/#{params[:blog_id]}/posts/#{@post.id}", method: :put do |f| %>
+
+  Title: <%= f.text_field :title %>
+  Body: <%= f.text_area :body %>
+  <%= f.submit "Submit" %>
+
+<% end %>

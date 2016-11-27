@@ -7,17 +7,25 @@
               <a href="/" class='brand'>Not Blogger <i class="fa fa-pencil fa-lg"></i>
               </a>
             </li>
+            <% if current_user %>
             <li>
               <%= link_to('Create new blog', '/blogs/new', :class => 'btn btn-default')  %>
             </li>
-            <% if current_user && !current_user.blogs.empty? %>
-              <%= link_to('Manage blogs', "/users/#{current_user.id}/blogs", :class => 'btn btn-default')  %>
+              <% if !current_user.blogs.empty? %>
+                <li>
+                  <%= link_to('Manage blogs', "/users/#{current_user.id}/blogs", :class => 'btn btn-default')  %>
+                </li>
+              <% end %>
             <% end %>
-            <%= link_to('Browse blogs', '/blogs', :class => 'btn btn-default')  %>
+            <li>
+              <%= link_to('Browse blogs', '/blogs', :class => 'btn btn-default')  %>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
-              <li><div class="btn btn-default"><%= current_user.name %></div></li>
+              <li>
+                <div class="btn btn-default"><%= current_user.name %></div>
+              </li>
               <li>
                 <%= link_to('Logout', '/logout', :class => 'btn btn-default')  %>
               </li>

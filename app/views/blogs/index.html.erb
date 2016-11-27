@@ -1,12 +1,11 @@
 <h2>Browse Blogs</h2>
-<%= @blogs %>
 
 <% @blogs.each do |blog| %>
   <div class="blog-card">
     <h2><%= blog.title%></h2>
     <h3><%= blog.description%></h3>
     <%= link_to('Visit', "/blogs/#{blog.id}", :class => 'btn btn-primary')  %>
-    <% if blog.owner == current_user.id %>
+    <% if current_user && blog.owner == current_user.id %>
       <%= link_to('Edit', "/blogs/#{blog.id}/edit", :class => 'btn btn-default')  %>
     <% end %>
   </div>
