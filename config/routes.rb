@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+#mapping of url to controller
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
   get '/users/:user_id/blogs' => 'blogs#index'
@@ -10,7 +11,10 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :blogs do
-    resources :posts
+    resources :posts do
+      #except: :new, :edit -- dont make routes for these commands
+      resources :comments, only: [:create, :update, :destroy]
+
+    end
   end
-  
 end

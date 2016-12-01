@@ -7,13 +7,18 @@ This README would normally document whatever steps are necessary to get the appl
 * Ruby version : 2.2.4
 * Rails version:  rails-5.0.0.1
 
+*
+
 * System dependencies
+
 
 * Configuration
 
 * Database creation
 
 * Database initialization
+rake db:migrate
+rake db:rollback
 
 * How to run the test suite
 

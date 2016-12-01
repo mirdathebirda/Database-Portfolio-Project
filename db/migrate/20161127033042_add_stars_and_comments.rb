@@ -4,6 +4,7 @@ class AddStarsAndComments < ActiveRecord::Migration[5.0]
       id INT PRIMARY KEY AUTO_INCREMENT,
         author INT NOT NULL,
         post INT NOT NULL,
+        text TEXT NOT NULL,
       date DATETIME NOT NULL,
       visible BOOLEAN DEFAULT TRUE,
         FOREIGN KEY(author) REFERENCES user(id),

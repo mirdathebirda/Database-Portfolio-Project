@@ -26,10 +26,11 @@ ActiveRecord::Schema.define(version: 20161127033042) do
   end
 
   create_table "comment", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "author",                 null: false
-    t.integer  "post",                   null: false
-    t.datetime "date",                   null: false
-    t.boolean  "visible", default: true
+    t.integer  "author",                               null: false
+    t.integer  "post",                                 null: false
+    t.text     "text",    limit: 65535,                null: false
+    t.datetime "date",                                 null: false
+    t.boolean  "visible",               default: true
     t.index ["author"], name: "author", using: :btree
     t.index ["post"], name: "post", using: :btree
   end
