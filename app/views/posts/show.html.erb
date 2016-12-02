@@ -10,6 +10,20 @@ Text: <%= f.text_area :text %>
 <%= f.submit "Submit" %>
 <% end %>
 
+<h1><%= @post.title %></h1>
+<p><%= "Category" %></p>
+<%= form_for :category, url: "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories" do |f| %>
+Text: <%= f.text_area :name %>
+<%= f.submit "Submit" %>
+<% end %>
+
+<% @post.categories.each do |category| %>
+  <div class="category-card">
+    <h1><%= category.name %></h1>
+  </div>
+<% end %>
+
+
 <% @post.comments.each do |comment| %>
   <div class="comment-card">
     <h1><%= comment.author %></h1>
