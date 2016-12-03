@@ -1,8 +1,5 @@
 class CommentsController < ApplicationController
 
-
-
-
     def create
       cols = comment_params.keys.join(", ")
       vals = comment_params.values.map{|val| %Q(#{Comment.sanitize(val)})}.join(", ")
@@ -22,6 +19,7 @@ class CommentsController < ApplicationController
       redirect_to "/blogs/#{params[:blog_id]}/posts/#{params[:post_id]}"
     end
 
+    #to package up data for the comment form
     private
     def comment_params
       params.require(:comment).permit(:text)
