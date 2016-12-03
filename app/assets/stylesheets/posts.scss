@@ -1,3 +1,21 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new-comment {
+  border-style: solid;
+  width: 50%;
+
+  textarea{
+    width:50%;
+  }
+}
+.modal-title {
+  text-align: center;
+}
+
+.modal-body {
+  textarea {
+    width: 100%;
+  }
+}
