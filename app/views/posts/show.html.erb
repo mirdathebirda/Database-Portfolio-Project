@@ -20,8 +20,10 @@ Text: <%= f.text_area :name %>
 <% @post.categories.each do |category| %>
   <div class="category-card">
     <h1><%= category.name %></h1>
+    <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories/#{category.id}", method: :delete, :class => 'btn btn-default') %>
   </div>
 <% end %>
+
 
 
 <% @post.comments.each do |comment| %>

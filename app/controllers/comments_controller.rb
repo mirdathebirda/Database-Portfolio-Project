@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
     def destroy
       Comment.connection.execute("DELETE FROM comment WHERE id = #{params[:id]};")
       redirect_to "/blogs/#{params[:blog_id]}/posts/#{params[:post_id]}"
+
     end
 
     private

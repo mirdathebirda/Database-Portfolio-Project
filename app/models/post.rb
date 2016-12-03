@@ -3,15 +3,9 @@ class Post < ApplicationRecord
 
 
   def categories
-     Category.find_by_sql("SELECT * FROM category INNER JOIN post_category ON category.id = post_category.category 
-     WHERE category.id = post_category.category;")
+     Category.find_by_sql("SELECT * FROM category INNER JOIN post_category ON category.id = post_category.category
+     WHERE category.id = post_category.category AND post_category.post = #{self.id};")
   end
-
-  def postcategories
-    PostCategory.find_by_sql "SELECT * FROM post_category WHERE post = #{self.id};"
-  end
-
-
 
 
 
