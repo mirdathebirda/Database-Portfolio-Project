@@ -1,3 +1,6 @@
+@import url( 'https://fonts.googleapis.com/css?family=Josefin+Sans');
+$josefin: 'Josefin Sans', sans-serif;
+
 .nav-link:hover {
   border-top: 4px solid #CC2B2B;
 }
@@ -10,4 +13,9 @@
 .header .btn {
   margin-top: 10px;
   margin-left: 5px;
+}
+
+body {
+  font-family: $josefin;
+  color: #000035;
 }

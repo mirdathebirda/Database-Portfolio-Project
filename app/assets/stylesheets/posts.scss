@@ -1,21 +1,98 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url( 'https://fonts.googleapis.com/css?family=Josefin+Sans');
+$josefin: 'Josefin Sans', sans-serif;
+
+.post {
+    margin: 20px auto 20px auto;
+    width: 50%;
+    border-style: solid;
+    border-width: 0.5px;
+    border-color: #d3d3d3;
+
+    .post-title {
+        text-align: center;
+        font-family: $josefin;
+        font-size: 20px;
+    }
+
+    .post-content {
+        padding: 10px;
+        font-family: $josefin;
+        font-size: 16px;
+    }
+}
 
 .new-comment {
-  border-style: solid;
-  width: 50%;
+    background-color: #f5f5dc;
+    // border-style: solid;
+    width: 50%;
+    padding: 10px;
+    margin: auto;
 
-  textarea{
-    width:50%;
-  }
+    textarea {
+        // does 90% of .new-comment
+        width: 90%;
+        font-family: $josefin;
+    }
+
+    .row {
+        margin-left: 20px;
+    }
+
+    .submit-button {
+        background-color: #225555;
+        color: #ffffff;
+        width: 50px;
+        height: 30px;
+        font-family: $josefin;
+        font-size: 12px;
+        text-align: center;
+    }
 }
+
+.comment-card {
+    width: 50%;
+    margin: auto;
+    // border-style: solid;
+    // border-width: 0.5px;
+    // border-color: #d3d3d3;
+    background-color: #f5f5dc;
+    padding: 20px;
+    font-family: $josefin;
+
+    .comment, .author {
+      margin-left: 30px;
+    }
+
+    .author {
+      font-weight: bold;
+    }
+    .btn {
+        background-color: #225555;
+        color: #ffffff;
+        width: 50px;
+        height: 30px;
+        font-size: 12px;
+        // text-align: center;
+        margin-left: 40px;
+        font-family: $josefin;
+
+        #dlt-btn {
+          text-align: center;
+        }
+    }
+}
+
 .modal-title {
-  text-align: center;
+    text-align: center;
+    font-family: $josefin;
 }
 
 .modal-body {
-  textarea {
-    width: 100%;
-  }
+    textarea {
+        width: 100%;
+        font-family: $josefin;
+    }
 }
