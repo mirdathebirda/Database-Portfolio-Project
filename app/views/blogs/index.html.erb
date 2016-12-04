@@ -1,14 +1,21 @@
-<div class = "browse-blog">
-<h2>Browse Blogs</h2>
+<div class="browse-blog">
+    <h1>Browse Blogs</h1>
 
-<% @blogs.each do |blog| %>
-  <div class="blog-card">
-    <h2><%= blog.title%></h2>
-    <h3><%= blog.description%></h3>
-    <%= link_to('Visit', "/blogs/#{blog.id}", :class => 'btn btn-primary')  %>
-    <% if current_user && blog.owner == current_user.id %>
-      <%= link_to('Edit', "/blogs/#{blog.id}/edit", :class => 'btn btn-default')  %>
+    <% @blogs.each do |blog| %>
+    <div class="col-md-5" id="blog-card">
+        <div class="blog-title">
+            <h2>
+                <%=blog.title%></h2>
+        </div>
+        <div class="blog-description">
+            <h3><%= blog.description%></h3>
+            <div class="visit-edit-btn">
+                <%= link_to('Visit', "/blogs/#{blog.id}", :class => "btn btn-primary", id: "visit")  %>
+                <% if current_user && blog.owner == current_user.id %>
+                <%= link_to('Edit', "/blogs/#{blog.id}/edit", :class => "btn btn-primary", id: "edit")  %>
+                <% end %>
+            </div>
+        </div>
+    </div>
     <% end %>
-  </div>
-<% end %>
-</div> 
+</div>
