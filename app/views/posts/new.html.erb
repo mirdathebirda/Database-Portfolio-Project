@@ -1,9 +1,17 @@
-<h1>New Post</h1>
+<div class="new-post">
+    <h1>New Post</h1>
 
-<%= form_for :post, url: "/blogs/#{params[:blog_id]}/posts" do |f| %>
+    <div class="new-post-form">
+        <%= form_for :post, url: "/blogs/#{params[:blog_id]}/posts" do |f| %>
+        <div class="row">
+            <%= f.text_field :title, class: "post-title", placeholder:"Title" %>
+        </div>
+        <div class="row">
+            <%= f.text_area :body, placeholder: "Your text here" %>
+        </div>
+        <div class="row">
+            <%= f.submit "Submit", class: "submit-button" %>
+        </div>
 
-  Title: <%= f.text_field :title %>
-  Body: <%= f.text_area :body %>
-  <%= f.submit "Submit" %>
-
-<% end %>
+        <% end %>
+    </div>
