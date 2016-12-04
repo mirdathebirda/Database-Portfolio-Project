@@ -1,6 +1,15 @@
 @import url( 'https://fonts.googleapis.com/css?family=Josefin+Sans');
 $josefin: 'Josefin Sans', sans-serif;
 
+body {
+    // background-color: #000035;
+    background: url("./background3.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .navHeaderCollapse {
     background-color: #000035;
     width: 100%;

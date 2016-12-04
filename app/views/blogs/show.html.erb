@@ -1,3 +1,4 @@
+<div class ="blog">
 <% if current_user && @blog.owner == current_user.id %>
   <div class="pull-right">
      <%= link_to('New Post', "/blogs/#{@blog.id}/posts/new", :class => 'btn btn-primary')  %>
@@ -18,3 +19,4 @@
     <% end %>
   </div>
 <% end %>
+</div>

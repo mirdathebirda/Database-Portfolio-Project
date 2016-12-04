@@ -1,16 +1,43 @@
 // Place all the styles related to the Blogs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-body {
-    // background-color: #000035;
-    background: url("./background3.jpg") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+@import url( 'https://fonts.googleapis.com/css?family=Josefin+Sans');
+$font-fam: 'Josefin Sans', sans-serif;
 
 .blog {
     padding-left: 20px;
+}
+
+.new-blog {
+  h1 {
+    text-align: center;
+    font-weight: bolder;
+    margin-top: 50px;
+  }
+
+  .new-blog-form {
+    text-align: center;
+
+    .blog-title {
+      margin: 10px;
+      width:50%;
+    }
+
+    textarea {
+      margin: 10px;
+      width: 50%;
+      height: 100px;
+    }
+
+    .submit-button {
+      background-color: #225555;
+      color: #ffffff;
+      width: 60px;
+      height: 30px;
+      font-family: $font-fam;
+      font-size: 14px;
+      text-align: center;
+    }
+
+  }
 }
