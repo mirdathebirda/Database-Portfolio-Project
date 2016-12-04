@@ -1,11 +1,24 @@
-<h1>Signup!</h1>
+<div class="signup">
+    <h1>Sign Up! </h1>
 
-<%= form_for :user, url: '/users' do |f| %>
+    <%= form_for :user, url: '/users' do |f| %>
+    <div class="new-user">
+        <div class="row">
+            <%= f.text_field :name, placeholder: "Name", class:"new-user-info" %>
+        </div>
+        <div class="row">
+            <%= f.text_field :email, placeholder:"Email", class:"new-user-info" %>
+        </div>
+        <div class="row">
+            <%= f.password_field :password, placeholder: "Password", class:"new-user-info" %>
+        </div>
+        <div class="row">
+            <%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class:"new-user-info" %>
+        </div>
+        <div class="row">
+            <%= f.submit "Submit", class:"submit-button"%>
+        </div>
+    </div>
 
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
-
-<% end %>
+    <% end %>
+</div>
