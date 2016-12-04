@@ -74,68 +74,81 @@ $font-fam: 'Josefin Sans', sans-serif;
     }
 }
 
-// .browse-blog {
-//     h1 {
-//         text-align: center;
-//         font-weight: bolder;
-//     }
-//
-//     .blog-cards {
-//         margin-left: auto;
-//         margin-right: auto;
-//     }
-//
-//     #blog-card {
-//         // background-color: #f5f5dc;
-//         // border-style: solid;
-//         // border-width: 0.5px;
-//         // border-color: #d3d3d3;
-//         margin: 10px;
-//         width: 48%;
-//
-//         .blog-title {
-//             background-color: #225555;
-//             padding: 10px;
-//
-//             h2 {
-//                 text-align: center;
-//                 color: #000035;
-//                 color: #f5f5dc;
-//             }
-//         }
-//
-//         .blog-description {
-//             background-color: #f5f5dc;
-//             padding: 20px;
-//
-//             h3 {
-//                 font-size: 16px;
-//                 text-align: center;
-//                 color: #000035;
-//             }
-//         }
-//
-//         .visit-edit-btn {
-//             padding-top: 10px;
-//             padding-left: 20px;
-//
-//             .btn {
-//                 background-color: #225555;
-//                 color: #ffffff;
-//                 font-family: $font-fam;
-//                 font-size: 14px;
-//                 text-align: center;
-//             }
-//         }
-//     }
-// }
+.browse-blog {
+    h1 {
+        text-align: center;
+        font-weight: bolder;
+        margin: 35px;
+    }
+
+    .blog-cards {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .blog-card {
+        // background-color: #f5f5dc;
+        // border-style: solid;
+        // border-width: 0.5px;
+        // border-color: #d3d3d3;
+        width: 80%;
+        margin: 10px auto 10px auto;
+
+
+        .blog-title {
+            background-color: #225555;
+            // opacity:0.9;
+            padding: 5px;
+
+            h3 {
+                text-align: center;
+                color: #000035;
+                color: #f5f5dc;
+            }
+        }
+
+        .blog-description {
+            background-color: #f5f5dc;
+            padding: 20px;
+            // opacity:0.9;
+
+            h5 {
+                font-size: 16px;
+                text-align: center;
+                color: #000035;
+            }
+        }
+
+        .visit-edit-btn {
+            padding-top: 10px;
+            padding-left: 20px;
+
+            .btn {
+                background-color: #225555;
+                color: #f5f5dc;
+                font-family: $font-fam;
+                font-size: 14px;
+                text-align: center;
+            }
+        }
+    }
+}
 
 .blog {
     .blog-details {
         text-align: center;
+        // color:  #f5f5dc;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
 
         h1 {
             font-weight: bolder;
+            text-align: center;
+        }
+
+        h4 {
+          text-align: center;
         }
     }
 
@@ -151,27 +164,29 @@ $font-fam: 'Josefin Sans', sans-serif;
         text-align: center;
         margin: 10px;
         width: 48%;
-    }
 
-    .post-title {
-        background-color: #225555;
-        padding: 10px;
+        .post-title {
+            background-color: #225555;
+            padding: 10px;
 
-        h2 {
-            text-align: center;
-            color: #000035;
-            color: #f5f5dc;
+            h2 {
+                text-align: center;
+                color: #000035;
+                color: #f5f5dc;
+            }
+        }
+
+        .post-details {
+            background-color: #f5f5dc;
+            padding: 20px;
+
+            h3 {
+                font-size: 16px;
+                text-align: center;
+                color: #000035;
+            }
         }
     }
 
-    .post-details {
-        background-color: #f5f5dc;
-        padding: 20px;
 
-        h3 {
-            font-size: 16px;
-            text-align: center;
-            color: #000035;
-        }
-    }
 }

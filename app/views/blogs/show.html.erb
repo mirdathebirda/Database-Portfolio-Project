@@ -20,13 +20,13 @@
         <div class="post-details">
             <h3><%= post.body %></h3>
             <div class="visit-edit-btn">
-            <%= link_to('Visit', "/blogs/#{@blog.id}/posts/#{post.id}", :class => 'btn btn-primary')  %>
-            <% if current_user && post.author == current_user.id %>
-            <%= link_to('Edit', "/blogs/#{@blog.id}/posts/#{post.id}/edit", :class => 'btn btn-default')  %>
-            <% end %>
+                <%= link_to('Visit', "/blogs/#{@blog.id}/posts/#{post.id}", :class => 'btn btn-primary')  %>
+                <% if current_user && post.author == current_user.id %>
+                <%= link_to('Edit', "/blogs/#{@blog.id}/posts/#{post.id}/edit", :class => 'btn btn-default')  %>
+                <% end %>
+            </div>
         </div>
-      </div>
-      </div>
-        <% end %>
+    </div>
+    <% end %>
 
 </div>
