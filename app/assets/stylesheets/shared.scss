@@ -24,9 +24,11 @@ body {
     border-top: 4px solid #CC2B2B;
 }
 
-.brand {
-    color: black;
-    font-weight: bold;
+.navbar-brand {
+    a {
+        color: #BBEEEE;
+        font-weight: bolder;
+    }
 }
 
 .header .btn {
@@ -37,4 +39,10 @@ body {
 body {
     font-family: $josefin;
     color: #000035;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #000035;
+    color: #BBEEEE;
 }
