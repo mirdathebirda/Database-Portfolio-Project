@@ -10,7 +10,7 @@
 
 <div class="blog">
     <% if current_user && @blog.owner == current_user.id %>
-    <div class="pull-right">
+    <div class="pull-left">
         <div class="new-post">
             <%= link_to('New Post', "/blogs/#{@blog.id}/posts/new", :class => 'btn btn-primary')  %>
             <%= link_to('Edit', "/blogs/#{@blog.id}/edit", :class => "btn btn-primary", id: "edit")  %>
@@ -18,13 +18,16 @@
         </div>
     </div>
     <% end %>
-
-    <%= form_tag "/blogs/#{@blog.id}/posts", :method => 'get' do %>
-    <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search", :name => nil %>
-    </p>
-    <% end %>
+<div class ="pull-right">
+    <div class="search-posts">
+        <%= form_tag "/blogs/#{@blog.id}/posts", id: "search-form", :method => 'get' do %>
+        <p>
+            <%= text_field_tag :search, params[:search], placeholder: "Search for a Post" %>
+            <%= submit_tag "Search for a Post ", :class => 'btn btn-default' %>
+        </p>
+        <% end %>
+    </div>
+  </div>
 
     <div class="blog-details">
         <h1><%= @blog.title %></h1>
