@@ -19,21 +19,12 @@
     <% end %>
 </div>
 
-<h1><%= @post.title %></h1>
-<p><%= "Category" %></p>
 <%= form_for :category, url: "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories" do |f| %>
-Text: <%= f.text_area :name %>
-<%= f.submit "Submit" %>
-<% end %>
-
-<% @post.categories.each do |category| %>
-  <div class="category-card">
-    <h1><%= category.name %></h1>
-    <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories/#{category.id}", method: :delete, :class => 'btn btn-default') %>
-  </div>
-<% end %>
-
-
+<div class="new-category">
+    <div class="row"> <%= f.text_area :name, placeholder:"Categorize this post..."%></div>
+    <div class="row"> <%= f.submit "Submit", class: "submit-button"%></div>
+    <% end %>
+</div>
 
 <% @post.comments.each do |comment| %>
 <div class="comment-card">
@@ -69,4 +60,15 @@ Text: <%= f.text_area :name %>
             <% end %>
         </div>
 </div>
+<% end %>
+
+<div class = "category-header">
+  <p><%= "Categories:" %></p>
+</div>
+
+<% @post.categories.each do |category| %>
+  <div class="category-card">
+    <p class = "category"><%= category.name %></p>
+    <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories/#{category.id}", method: :delete, :class => 'btn btn-default') %>
+  </div>
 <% end %>
