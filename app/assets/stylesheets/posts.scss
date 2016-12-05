@@ -158,6 +158,75 @@ $font-fam: 'Josefin Sans', sans-serif;
         }
     }
 }
+
+
+
+.new-category {
+    background-color: #f5f5dc;
+    width: 75%;
+    padding: 10px;
+    padding-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+    textarea {
+        width: 93.5%;
+
+        font-family: $font-fam;
+    }
+
+    .row {
+        margin-left: 20px;
+    }
+
+    .submit-button {
+        background-color: #225555;
+        color: #f5f5dc;
+        width: 50px;
+        height: 30px;
+        font-family: $font-fam;
+        font-size: 12px;
+        text-align: center;
+    }
+}
+
+.category-header {
+    width: 75%;
+    margin: auto;
+    background-color: #f5f5dc;
+    padding: 30px;
+    font-family: $font-fam;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.category-card {
+    width: 75%;
+    margin: auto;
+    background-color: #f5f5dc;
+    padding: 30px;
+    font-family: $font-fam;
+
+
+    .category {
+      margin-left: 10px;
+    }
+
+    .btn {
+        background-color: #225555;
+        color: #f5f5dc;
+        width: 50px;
+        height: 30px;
+        font-size: 12px;
+        margin-left: 5px;
+        font-family: $font-fam;
+
+        #dlt-btn {
+          text-align: center;
+        }
+    }
+}
+
 .modal-content {
   background-color: #225555;
 }
