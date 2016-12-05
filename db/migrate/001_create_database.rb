@@ -74,9 +74,9 @@ class CreateDatabase < ActiveRecord::Migration
         add_foreign_key "likes", "post", column: "post", primary_key: "postID", name: "likes_ibfk_1"
         add_foreign_key "likes", "user", column: "User", primary_key: "name", name: "likes_ibfk_2"
 
-        create_table "postcategories", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+        create_table "post_category", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
           t.integer "postID"
-          t.string  "category", limit: 52
+          t.integer  "category", limit: 52
           t.index ["category"], name: "category", using: :btree
           t.index ["postID"], name: "postID", unique: true, using: :btree
         end

@@ -19,6 +19,22 @@
     <% end %>
 </div>
 
+<h1><%= @post.title %></h1>
+<p><%= "Category" %></p>
+<%= form_for :category, url: "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories" do |f| %>
+Text: <%= f.text_area :name %>
+<%= f.submit "Submit" %>
+<% end %>
+
+<% @post.categories.each do |category| %>
+  <div class="category-card">
+    <h1><%= category.name %></h1>
+    <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories/#{category.id}", method: :delete, :class => 'btn btn-default') %>
+  </div>
+<% end %>
+
+
+
 <% @post.comments.each do |comment| %>
 <div class="comment-card">
         <p class = "comment"><%= comment.text %></p>

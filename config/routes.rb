@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :posts do
       #except: :new, :edit -- dont make routes for these commands
       resources :comments, only: [:create, :update, :destroy]
+      resources :categories, only: [:create, :destroy]
 
     end
   end
