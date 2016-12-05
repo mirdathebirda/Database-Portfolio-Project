@@ -12,8 +12,11 @@ class CategoriesController < ApplicationController
   def destroy
     PostCategory.connection.execute("DELETE FROM post_category WHERE id = #{params[:id]}")
     redirect_to "/blogs/#{params[:blog_id]}/posts/#{params[:post_id]}"
+  end
 
-
+  def search
+    category.PostCategory.find_by_sql("SELECT post FROM post_category WHERE post = #{params[:id]}")
+    redirect_to "/blogs/#{params[:blog_id]}/posts?filter=#{category.post}"
   end
 
   private
