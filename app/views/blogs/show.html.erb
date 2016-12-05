@@ -19,6 +19,13 @@
     </div>
     <% end %>
 
+    <%= form_tag "/blogs/#{@blog.id}/posts", :method => 'get' do %>
+    <p>
+        <%= text_field_tag :search, params[:search] %>
+        <%= submit_tag "Search", :name => nil %>
+    </p>
+    <% end %>
+
     <div class="blog-details">
         <h1><%= @blog.title %></h1>
         <h4><%= @blog.description %></h4>
