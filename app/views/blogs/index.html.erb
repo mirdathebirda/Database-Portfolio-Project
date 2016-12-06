@@ -5,8 +5,8 @@
         <% @blogs.each do |blog| %>
         <div class="blog-card">
             <div class="blog-title">
-                <h3>
-                    <%=blog.title%></h3>
+                <h3><%=blog.title%></h3>
+                <h4><%=blog.author_name%></h4>
             </div>
             <div class="blog-description">
                 <h5><%= blog.description[0..300].gsub(/\s\w+\s*$/, '...') %></h5>
