@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206182118) do
+ActiveRecord::Schema.define(version: 20161206193300) do
 
   create_table "blog", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "owner",                                    null: false
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20161206182118) do
     t.text    "description", limit: 65535,                null: false
     t.boolean "visible",                   default: true
     t.index ["owner"], name: "owner", using: :btree
+    t.index ["title"], name: "title", using: :btree
   end
 
   create_table "category", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161206182118) do
     t.integer  "star_count",                    default: 0, null: false
     t.index ["author"], name: "author", using: :btree
     t.index ["blog"], name: "blog", using: :btree
+    t.index ["title"], name: "title", using: :btree
   end
 
   create_table "post_category", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -71,6 +73,7 @@ ActiveRecord::Schema.define(version: 20161206182118) do
     t.string "email",           limit: 52
     t.text   "password_digest", limit: 65535, null: false
     t.index ["email"], name: "email", unique: true, using: :btree
+    t.index ["name"], name: "name", using: :btree
   end
 
   create_table "user_role", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

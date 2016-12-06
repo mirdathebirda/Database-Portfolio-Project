@@ -2,6 +2,7 @@ class AddStarCountTrigger < ActiveRecord::Migration[5.0]
   def up
     execute "ALTER TABLE post ADD COLUMN star_count INT NOT NULL DEFAULT 0;"
     ## No Trigger support on free version of ClearDB
+    ## https://getsatisfaction.com/cleardb/topics/create_function_without_super_privileges
     # execute "CREATE TRIGGER star_count_update
     #           AFTER UPDATE ON star FOR EACH ROW
     #           BEGIN
