@@ -1,14 +1,32 @@
 class BlogsController < ApplicationController
   def show
+    page_size = 10
+    unless params[:page]
+      params[:page] = 1
+    end
+
     @blog = Blog.find_by_sql("SELECT * FROM blog where id = #{params[:id]};").first
+    @posts = Post.find_by_sql "SELECT * FROM post WHERE blog = #{@blog.id} LIMIT #{(params[:page].to_i - 1) * page_size}, #{page_size + 1};"
+
+    @has_prev = params[:page].to_i > 1
+    @has_next = @posts.length > page_size
+    @posts = @posts[0...page_size]
   end
 
   def index
-    if params[:user_id]
-      @blogs = Blog.find_by_sql "SELECT * FROM blog WHERE owner = #{params[:user_id]};"
-    else
-      @blogs = Blog.find_by_sql "SELECT * FROM blog;"
+    page_size = 10
+    unless params[:page]
+      params[:page] = 1
     end
+
+    if params[:user_id]
+      @blogs = Blog.find_by_sql "SELECT * FROM blog WHERE owner = #{params[:user_id]} LIMIT #{(params[:page].to_i - 1) * page_size}, #{page_size + 1};"
+    else
+      @blogs = Blog.find_by_sql "SELECT * FROM blog LIMIT #{(params[:page].to_i - 1) * page_size}, #{page_size + 1};"
+    end
+    @has_prev = params[:page].to_i > 1
+    @has_next = @blogs.length > page_size
+    @blogs = @blogs[0...page_size]
   end
 
   def new

@@ -70,10 +70,11 @@ $font-fam: 'Josefin Sans', sans-serif;
 
 }
 .post {
-    margin: 20px auto 20px auto;
+    margin: 20px auto 0px auto;
     width: 75%;
     border-style: solid;
     border-width: 0.5px;
+    border-bottom-width: 0px;
     border-color: #d3d3d3;
     background-color: #225555;
     color: #f5f5dc;
@@ -90,9 +91,62 @@ $font-fam: 'Josefin Sans', sans-serif;
         font-family: $font-fam;
         font-size: 18px;
     }
+
+}
+
+.new-category {
+  margin: 0px auto 0px auto;
+  width: 75%;
+  border-style: solid;
+  border-width: 0.5px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+  border-color: #d3d3d3;
+  background-color: #225555;
+  color: #f5f5dc;
+
+    textarea {
+        width: 20%;
+        height: 20%;
+        color: #000000;
+        background-color: #f5f5dc;
+        font-family: $font-fam;
+    }
+
+    .category-header {
+
+      margin: 20px 20px 0px auto;
+      margin-bottom: 0px;
+      width: 95%;
+      border-style: solid;
+      border-width: 0px;
+      border-top-width: 0px;
+      border-bottom-width: 0px;
+      border-color: #d3d3d3;
+      background-color: #225555;
+      color: #f5f5dc;
+      font-family: $font-fam;
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .row {
+        margin-left: 20px;
+    }
+
+    .submit-button {
+        background-color: #225555;
+        color: #f5f5dc;
+        width: 40px;
+        height: 20px;
+        font-family: $font-fam;
+        font-size: 10px;
+        text-align: center;
+    }
 }
 
 .new-comment {
+  margin-top: 20px;
     background-color: #f5f5dc;
     // border-style: solid;
     // border-width: 0.5px;
@@ -161,69 +215,36 @@ $font-fam: 'Josefin Sans', sans-serif;
 
 
 
-.new-category {
-    background-color: #f5f5dc;
-    width: 75%;
-    padding: 10px;
-    padding-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
 
-    textarea {
-        width: 93.5%;
 
-        font-family: $font-fam;
-    }
 
-    .row {
-        margin-left: 20px;
-    }
-
-    .submit-button {
-        background-color: #225555;
-        color: #f5f5dc;
-        width: 50px;
-        height: 30px;
-        font-family: $font-fam;
-        font-size: 12px;
-        text-align: center;
-    }
-}
-
-.category-header {
-    width: 75%;
-    margin: auto;
-    background-color: #f5f5dc;
-    padding: 30px;
-    font-family: $font-fam;
-    font-size: 15px;
-    font-weight: bold;
-}
 
 .category-card {
-    width: 75%;
-    margin: auto;
-    background-color: #f5f5dc;
-    padding: 30px;
-    font-family: $font-fam;
+  margin: 0px auto 0px auto;
+  width: 75%;
+  border-style: solid;
+  border-width: 0.5px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+  border-color: #d3d3d3;
+  background-color: #225555;
+  color: #f5f5dc;
 
 
     .category {
-      margin-left: 10px;
+      margin-left: 20px;
     }
 
     .btn {
+      margin-bottom: 10px;
         background-color: #225555;
         color: #f5f5dc;
-        width: 50px;
-        height: 30px;
-        font-size: 12px;
-        margin-left: 5px;
+        width: 40px;
+        height: 20px;
+        font-size: 10px;
+        margin-left: 20px;
         font-family: $font-fam;
-
-        #dlt-btn {
-          text-align: center;
-        }
+        text-align: center;
     }
 }
 

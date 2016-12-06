@@ -20,6 +20,9 @@ class CommentsController < ApplicationController
 
     end
 
+  
+
+
     #to package up data for the comment form
     private
     def comment_params
