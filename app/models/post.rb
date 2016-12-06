@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
   self.table_name = "post"
 
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
+  end
 
   def categories
      Category.find_by_sql("SELECT * FROM category INNER JOIN post_category ON category.id = post_category.category
