@@ -164,7 +164,8 @@ $font-fam: 'Josefin Sans', sans-serif;
 
     #post-card {
         text-align: center;
-        margin-bottom: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
 
         .post-title {
             background-color: #225555;
@@ -180,6 +181,7 @@ $font-fam: 'Josefin Sans', sans-serif;
         .post-details {
             background-color: #f5f5dc;
             padding: 20px;
+            height: 185px;
 
             h3 {
                 font-size: 16px;
