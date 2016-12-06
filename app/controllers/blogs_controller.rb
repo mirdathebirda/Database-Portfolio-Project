@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   def show
-    page_size = 5
+    page_size = 6
     unless params[:page]
       params[:page] = 1
     end
@@ -14,15 +14,15 @@ class BlogsController < ApplicationController
   end
 
   def index
-    page_size = 5
+    page_size = 6
     unless params[:page]
       params[:page] = 1
     end
 
     if params[:user_id]
-      @blogs = Blog.find_by_sql "SELECT * FROM blog WHERE owner = #{params[:user_id]} LIMIT #{(params[:page].to_i - 1) * page_size}, #{page_size + 1};"
+      @blogs = Blog.find_by_sql "SELECT * FROM blog WHERE owner = #{params[:user_id]} AND visible = true LIMIT #{(params[:page].to_i - 1) * page_size}, #{page_size + 1};"
     else
-      @blogs = Blog.find_by_sql "SELECT * FROM blog LIMIT #{(params[:page].to_i - 1) * page_size}, #{page_size + 1};"
+      @blogs = Blog.find_by_sql "SELECT * FROM blog WHERE visible = true LIMIT #{(params[:page].to_i - 1) * page_size}, #{page_size + 1};"
     end
     @has_prev = params[:page].to_i > 1
     @has_next = @blogs.length > page_size
@@ -48,6 +48,11 @@ class BlogsController < ApplicationController
     updates = blog_params.map{|k, v| [%Q(#{k}=#{Blog.sanitize(v)})]}.join(", ")
     Blog.connection.execute("UPDATE blog SET #{updates} WHERE id = #{params[:id]};")
     redirect_to "/blogs/#{params[:id]}"
+  end
+
+  def destroy
+    Blog.connection.execute("UPDATE blog SET visible=false WHERE id = #{params[:id]};")
+    redirect_to "/blogs"
   end
 
 private
