@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 20161127033042) do
   end
 
   create_table "post_category", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "post",                       null: false
-    t.integer "category",                   
+    t.integer "post"
+    t.integer "category"
     t.index ["category"], name: "category", using: :btree
     t.index ["post", "category"], name: "post_category", unique: true, using: :btree
   end

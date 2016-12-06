@@ -1,4 +1,4 @@
-<% if current_user && @post.author == current_user.id %>
+<% if current_user && (@post.author == current_user.id || current_user.is_admin()) %>
   <div class="pull-right">
      <%= link_to('Edit', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/edit", :class => 'btn btn-default')  %>
      <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}", method: :delete, :class => 'btn btn-danger')  %>
@@ -11,7 +11,7 @@
             <button class="star-btn" data-id=<%= @post.id %> data-url=<%="/blogs/#{params[:blog_id]}/posts/#{@post.id}" %>>
                 <% if current_user && @post.starred_by(current_user) %>
                     <i class="fa fa-star fa-lg"></i>
-                <% elsif current_user %>
+                <% else %>
                     <i class="fa fa-star-o fa-lg"></i>
                 <% end %>
             </button>
@@ -38,7 +38,7 @@
 <% @post.categories.each do |category| %>
   <div class="category-card">
     <p class = "category"><%= category.name %></p>
-    <% if current_user && @post.author == current_user.id %>
+    <% if current_user && (@post.author == current_user.id || current_user.is_admin()) %>
     <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories/#{category.id}", method: :delete, :class => 'btn btn-default') %>
       <% end %>
   </div>
@@ -59,32 +59,32 @@
         <p class ="author"><%= comment.author_name %></p>
         <div class="row" id = "edit-dlt-btn">
           <!--  if this is the current user and author of this comment show edit and delete options-->
-            <% if current_user && comment.author == current_user.id %>
-            <!-- edit button -->
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal_<%=comment.id%>">Edit</button>
-            <!-- edit modal  -->
-            <div id="modal_<%=comment.id%>" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">
-                                Edit Comment:
-                            </h4>
-                        </div>
-                        <div class="modal-body">
-                            <%= form_for :comment, url: "/blogs/#{params[:blog_id]}/posts/#{@post.id}/comments/#{comment.id}", method: :put do |f| %>
-                            <%= f.text_area :text, :value => comment.text %>
-                            <%= f.submit "Submit", class: "submit-button" %>
-                            <% end %>
+            <% if current_user && (comment.author == current_user.id || current_user.is_admin()) %>
+                <!-- edit button -->
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modal_<%=comment.id%>">Edit</button>
+                <!-- edit modal  -->
+                <div id="modal_<%=comment.id%>" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">
+                                    Edit Comment:
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <%= form_for :comment, url: "/blogs/#{params[:blog_id]}/posts/#{@post.id}/comments/#{comment.id}", method: :put do |f| %>
+                                <%= f.text_area :text, :value => comment.text %>
+                                <%= f.submit "Submit", class: "submit-button" %>
+                                <% end %>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--  delete button -->
-            <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/comments/#{comment.id}", method: :delete, :class => 'btn btn-default', id: "dlt-btn") %>
-            <% end %>
+                <!--  delete button -->
+                <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/comments/#{comment.id}", method: :delete, :class => 'btn btn-default', id: "dlt-btn") %>
+                <% end %>
         </div>
 </div>
 <% end %>

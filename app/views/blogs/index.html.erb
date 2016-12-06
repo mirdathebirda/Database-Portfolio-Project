@@ -8,14 +8,21 @@
                 <%=blog.title%></h3>
         </div>
         <div class="blog-description">
-            <h5><%= blog.description%></h5>
+            <h5><%= blog.description[0..300].gsub(/\s\w+\s*$/, '...') %></h5>
             <div class="visit-edit-btn">
                 <%= link_to('Visit', "/blogs/#{blog.id}", :class => "btn btn-primary", id: "visit")  %>
-                <% if current_user && blog.owner == current_user.id %>
+                <% if current_user && (blog.owner == current_user.id || current_user.is_admin) %>
                 <%= link_to('Edit', "/blogs/#{blog.id}/edit", :class => "btn btn-primary", id: "edit")  %>
                 <% end %>
             </div>
         </div>
     </div>
+    <% end %>
+
+    <% if @has_prev %>
+        <%= link_to "Prev", "#{request.env['PATH_INFO']}?page=#{params[:page].to_i - 1}", :class => "btn btn-default" %>
+    <% end %>
+    <% if @has_next %>
+        <%= link_to "Next", "#{request.env['PATH_INFO']}?page=#{params[:page].to_i + 1}", :class => "btn btn-default pull-right" %>
     <% end %>
 </div>

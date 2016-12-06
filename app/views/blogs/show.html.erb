@@ -22,30 +22,37 @@
         <h4><%= @blog.description %></h4>
     </div>
 
-    <% @blog.posts.each do |post| %>
-    <div class="col-md-6" id="post-card">
-        <div class="post-title">
-            <h2 class="post-title-text"><%= post.title %></h2>
-            <div class="star">
-                <button class="star-btn" data-url=<%= "/blogs/#{@blog.id}/posts/#{post.id}" %>>
-                    <% if current_user && post.starred_by(current_user) %>
-                        <i class="fa fa-star fa-lg"></i>
-                    <% elsif current_user %>
-                        <i class="fa fa-star-o fa-lg"></i>
+    <% @posts.each do |post| %>
+        <div class="col-md-6" id="post-card">
+            <div class="post-title">
+                <h2 class="post-title-text"><%= post.title %></h2>
+                <div class="star">
+                    <button class="star-btn" data-url=<%= "/blogs/#{@blog.id}/posts/#{post.id}" %>>
+                        <% if current_user && post.starred_by(current_user) %>
+                            <i class="fa fa-star fa-lg"></i>
+                        <% else %>
+                            <i class="fa fa-star-o fa-lg"></i>
+                        <% end %>
+                    </button>
+                    <span class="star-btn-text"><%= post.star_count %></span>
+                </div>
+            </div>
+            <div class="post-details">
+                <h3><%= post.body[0..300].gsub(/\s\w+\s*$/, '...') %></h3>
+                <div class="visit-edit-btn">
+                    <%= link_to('Visit', "/blogs/#{@blog.id}/posts/#{post.id}", :class => 'btn btn-primary')  %>
+                    <% if current_user && (post.author == current_user.id || current_user.is_admin()) %>
+                    <%= link_to('Edit', "/blogs/#{@blog.id}/posts/#{post.id}/edit", :class => 'btn btn-default')  %>
                     <% end %>
-                </button>
-                <span class="star-btn-text"><%= post.star_count %></span>
+                </div>
             </div>
         </div>
-        <div class="post-details">
-            <h3><%= post.body %></h3>
-            <div class="visit-edit-btn">
-                <%= link_to('Visit', "/blogs/#{@blog.id}/posts/#{post.id}", :class => 'btn btn-primary')  %>
-                <% if current_user && post.author == current_user.id %>
-                <%= link_to('Edit', "/blogs/#{@blog.id}/posts/#{post.id}/edit", :class => 'btn btn-default')  %>
-                <% end %>
-            </div>
-        </div>
-    </div>
+    <% end %>
+
+    <% if @has_prev %>
+        <%= link_to "Prev", "#{request.env['PATH_INFO']}?page=#{params[:page].to_i - 1}", :class => "btn btn-default" %>
+    <% end %>
+    <% if @has_next %>
+        <%= link_to "Next", "#{request.env['PATH_INFO']}?page=#{params[:page].to_i + 1}", :class => "btn btn-default pull-right" %>
     <% end %>
 </div>

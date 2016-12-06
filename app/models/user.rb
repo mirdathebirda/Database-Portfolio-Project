@@ -10,4 +10,8 @@ class User < ApplicationRecord
   def posts
     Post.find_by_sql "SELECT * FROM post WHERE user = #{self.id};"
   end
+
+  def is_admin
+    !Role.find_by_sql("SELECT * FROM user_role JOIN (role) ON (user_role.role=role.id) WHERE user = #{self.id} AND role.name='admin';").empty?
+  end
 end

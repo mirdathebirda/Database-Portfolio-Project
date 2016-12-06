@@ -9,12 +9,12 @@ class StarsController < ApplicationController
     else
       Star.connection.execute("UPDATE star SET starred=true WHERE id = #{star.first.id};")
     end
-    render json: nil, status: :ok
+    redirect_to :back
   end
 
   def unstar
-     Star.connection.execute("UPDATE star SET starred=false WHERE user = #{current_user.id} AND post = #{params[:post_id]};")
-     render json: nil, status: :ok
+    Star.connection.execute("UPDATE star SET starred=false WHERE user = #{current_user.id} AND post = #{params[:post_id]};")
+    redirect_to :back
   end
 end
 
