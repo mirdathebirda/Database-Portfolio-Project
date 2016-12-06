@@ -4,7 +4,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @post = Post.find_by_sql("SELECT * FROM post WHERE title = '#{params[:q]}';").first
+    category_post_ID = PostCategory.find_by_sql("SELECT * FROM post_category INNER JOIN category ON category.id = post_category.category
+   WHERE category.name = '#{params[:q]}';").first
+    @posts = Post.find_by_sql("SELECT * FROM post WHERE title = #{category_post_ID.post};")
   end
 
   def new
