@@ -21,6 +21,7 @@ class BlogsController < ApplicationController
     @posts = Post.all
     if params[:search]
       @posts = Post.search(params[:search])
+      puts @posts.map(&:id)
     else
       @posts = Post.all
     end
