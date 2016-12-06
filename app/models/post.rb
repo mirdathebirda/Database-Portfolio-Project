@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   self.table_name = "post"
 
-  def self.search(search)
-    Post.find_by_sql("SELECT * FROM post WHERE title LIKE '%#{search}%' OR body LIKE '%#{search}%'")
+  def self.search(search, blog, page_size, page)
+    Post.find_by_sql("SELECT * FROM post INNER JOIN user ON post.author = user.id WHERE blog = #{blog} AND (title LIKE '%#{search}%' OR body LIKE '%#{search}%' OR user.name LIKE '%#{search}%') LIMIT #{(page - 1) * page_size}, #{page_size + 1};")
 
   end
 
