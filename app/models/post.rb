@@ -18,4 +18,10 @@ class Post < ApplicationRecord
   def starred_by(user)
     !Star.find_by_sql("SELECT * FROM star WHERE post = #{self.id} AND user = #{user.id} AND starred = true;").empty?
   end
+
+  def author_name
+    #IN SQL GET AUTHOR NAME
+        author = User.find_by_sql("SELECT * FROM user WHERE id = #{self.author};").first
+        author.name
+  end
 end
