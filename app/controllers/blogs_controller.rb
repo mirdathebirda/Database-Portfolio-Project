@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+#shows ONE blog page
   def show
     page_size = 6
     unless params[:page]
@@ -11,8 +12,17 @@ class BlogsController < ApplicationController
     @has_prev = params[:page].to_i > 1
     @has_next = @posts.length > page_size
     @posts = @posts[0...page_size]
+
+# bottom = mione o3o
+    @posts = Post.all
+    if params[:search]
+      @posts = Post.search(params[:search])
+    else
+      @posts = Post.all
+    end
   end
 
+#for manage and browse blogs
   def index
     page_size = 6
     unless params[:page]
