@@ -16,6 +16,10 @@ class PostsController < ApplicationController
 end
 
   def create
+    if post_params[:title].blank? || params[:body].blank?
+      render(json: "Error: blank entries") and return
+    end
+
     cols = post_params.keys.join(", ")
     vals = post_params.values.map{|val| %Q(#{Post.sanitize(val)})}.join(", ")
     Post.connection.execute("INSERT INTO post (author, blog, #{cols}, date) VALUES (#{current_user.id}, #{params[:blog_id]}, #{vals}, #{Post.sanitize(Time.now)});")
@@ -28,6 +32,10 @@ end
   end
 
   def update
+    if post_params[:title].blank? || params[:body].blank?
+      render(json: "Error: blank entries") and return
+    end
+
     updates = post_params.map{|k, v| [%Q(#{k}=#{Post.sanitize(v)})]}.join(", ")
     Post.connection.execute("UPDATE post SET #{updates} WHERE id = #{params[:id]};")
     redirect_to "/blogs/#{params[:blog_id]}/posts/#{params[:id]}"

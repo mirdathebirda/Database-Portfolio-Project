@@ -9,17 +9,13 @@ class BlogsController < ApplicationController
     @blog = Blog.find_by_sql("SELECT * FROM blog where id = #{params[:id]};").first
     @posts = Post.find_by_sql "SELECT * FROM post WHERE blog = #{@blog.id} LIMIT #{(params[:page].to_i - 1) * page_size}, #{page_size + 1};"
 
+    if params[:search]
+      @posts = Post.search(params[:search], @blog.id, page_size, params[:page].to_i)
+    end
+
     @has_prev = params[:page].to_i > 1
     @has_next = @posts.length > page_size
     @posts = @posts[0...page_size]
-
-# bottom = mione o3o
-    @posts = Post.all
-    if params[:search]
-      @posts = Post.search(params[:search])
-    else
-      @posts = Post.all
-    end
   end
 
 #for manage and browse blogs
@@ -43,6 +39,10 @@ class BlogsController < ApplicationController
   end
 
   def create
+    if blog_params[:title].blank? || params[:description].blank?
+      render(json: "Error: blank entries") and return
+    end
+
     cols = blog_params.keys.join(", ")
     vals = blog_params.values.map{|val| %Q(#{Blog.sanitize(val)}) }.join(", ")
     Blog.connection.execute("INSERT INTO blog (owner, #{cols}) VALUES (#{current_user.id}, #{vals});")
@@ -55,6 +55,10 @@ class BlogsController < ApplicationController
   end
 
   def update
+    if blog_params[:title].blank? || params[:description].blank?
+      render(json: "Error: blank entries") and return
+    end
+    
     updates = blog_params.map{|k, v| [%Q(#{k}=#{Blog.sanitize(v)})]}.join(", ")
     Blog.connection.execute("UPDATE blog SET #{updates} WHERE id = #{params[:id]};")
     redirect_to "/blogs/#{params[:id]}"
