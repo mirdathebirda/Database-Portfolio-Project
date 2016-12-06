@@ -6,6 +6,15 @@ class PostsController < ApplicationController
   def new
   end
 
+  def index
+  @posts = Post.all
+  if params[:search]
+    @posts = Post.search(params[:search])
+  else
+    @posts = Post.all
+  end
+end
+
   def create
     cols = post_params.keys.join(", ")
     vals = post_params.values.map{|val| %Q(#{Post.sanitize(val)})}.join(", ")
