@@ -3,14 +3,15 @@ class PostsController < ApplicationController
     @post = Post.find_by_sql("SELECT * FROM post where id = #{params[:id]};").first
   end
 
-  def index
-    category_post_ID = PostCategory.find_by_sql("SELECT * FROM post_category INNER JOIN category ON category.id = post_category.category
-   WHERE category.name = '#{params[:q]}';").first
-    @posts = Post.find_by_sql("SELECT * FROM post WHERE title = #{category_post_ID.post};")
-  end
 
-  def new
+  def index
+  @posts = Post.all
+  if params[:search]
+    @posts = Post.search(params[:search])
+  else
+    @posts = Post.all
   end
+end
 
   def create
     cols = post_params.keys.join(", ")
@@ -30,10 +31,17 @@ class PostsController < ApplicationController
     redirect_to "/blogs/#{params[:blog_id]}/posts/#{params[:id]}"
   end
 
+<<<<<<< HEAD
 
 
 
 
+=======
+  def destroy
+    Post.connection.execute("DELETE FROM post WHERE id = #{params[:id]};")
+    redirect_to "/blogs/#{params[:blog_id]}"
+  end
+>>>>>>> d0af0e21130b3db1471cc171468ceda973b1dcf3
 
 private
 

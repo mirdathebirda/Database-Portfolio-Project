@@ -1,37 +1,79 @@
 
+<<<<<<< HEAD
 
 
 
+=======
+<!-- <div class="search-category">
+<%= form_tag(blog_path, method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search", :name => nil) %>
+<% end %>
+</div> -->
+>>>>>>> d0af0e21130b3db1471cc171468ceda973b1dcf3
 
 
 <div class="blog">
     <% if current_user && @blog.owner == current_user.id %>
-    <div class="pull-right">
+    <div class="pull-left">
         <div class="new-post">
             <%= link_to('New Post', "/blogs/#{@blog.id}/posts/new", :class => 'btn btn-primary')  %>
         </div>
     </div>
     <% end %>
+    <div class="pull-right">
+        <div class="search-posts">
+            <%= form_tag "/blogs/#{@blog.id}", id: "search-form", :method => 'get' do %>
+            <p>
+                <%= text_field_tag :search, params[:search], placeholder: "Search for a Post" %>
+
+                <!-- <%= button_tag(type: "submit", class: "btn btn-default") do %>
+<span class="glyphicon glyphicon-search"></span>
+                <% end %> -->
+
+                <%= link_to('Search', "/blogs?search=#{:search}", :class => 'btn btn-default')  %>
+            </p>
+            <% end %>
+        </div>
+    </div>
 
     <div class="blog-details">
         <h1><%= @blog.title %></h1>
         <h4><%= @blog.description %></h4>
     </div>
 
-    <% @blog.posts.each do |post| %>
-    <div class="col-md-6" id="post-card">
-        <div class="post-title">
-            <h2><%= post.title %></h2>
-        </div>
-        <div class="post-details">
-            <h3><%= post.body %></h3>
-            <div class="visit-edit-btn">
-                <%= link_to('Visit', "/blogs/#{@blog.id}/posts/#{post.id}", :class => 'btn btn-primary')  %>
-                <% if current_user && post.author == current_user.id %>
-                <%= link_to('Edit', "/blogs/#{@blog.id}/posts/#{post.id}/edit", :class => 'btn btn-default')  %>
-                <% end %>
+    <% @posts.each do |post| %>
+        <div class="col-md-6" id="post-card">
+            <div class="post-title">
+                <h2 class="post-title-text"><%= post.title %></h2>
+                <div class="star">
+                    <button class="star-btn" data-url=<%= "/blogs/#{@blog.id}/posts/#{post.id}" %>>
+                        <% if current_user && post.starred_by(current_user) %>
+                            <i class="fa fa-star fa-lg"></i>
+                        <% else %>
+                            <i class="fa fa-star-o fa-lg"></i>
+                        <% end %>
+                    </button>
+                    <span class="star-btn-text"><%= post.star_count %></span>
+                </div>
+            </div>
+            <div class="post-details">
+                <h3><%= post.body[0..300].gsub(/\s\w+\s*$/, '...') %></h3>
+                <div class="visit-edit-btn">
+                    <%= link_to('Visit', "/blogs/#{@blog.id}/posts/#{post.id}", :class => 'btn btn-primary')  %>
+                    <% if current_user && (post.author == current_user.id || current_user.is_admin()) %>
+                    <%= link_to('Edit', "/blogs/#{@blog.id}/posts/#{post.id}/edit", :class => 'btn btn-default')  %>
+                    <% end %>
+                </div>
             </div>
         </div>
-    </div>
+    <% end %>
+
+    <% if @has_prev %>
+        <%= link_to "Prev", "#{request.env['PATH_INFO']}?page=#{params[:page].to_i - 1}", :class => "btn btn-default" %>
+    <% end %>
+    <% if @has_next %>
+        <%= link_to "Next", "#{request.env['PATH_INFO']}?page=#{params[:page].to_i + 1}", :class => "btn btn-default pull-right" %>
     <% end %>
 </div>

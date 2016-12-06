@@ -1,8 +1,8 @@
 
-<div class="search-category">
-<%= form_tag(blog_posts_path, method: "get") do %>
-  <%= label_tag(:q, "Filter") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
+
+<% if @posts.present? %>
+<%= render "/blogs/#{params[:blog_id]}/posts" %>
+<% else %>
+<p>There are no posts containing the term(s)
+    <%= params[:search] %>.</p>
 <% end %>
-</div>
