@@ -2,8 +2,13 @@ class Post < ApplicationRecord
   self.table_name = "post"
 
   def self.search(search, blog, page_size, page)
-    Post.find_by_sql("SELECT * FROM post INNER JOIN user ON post.author = user.id WHERE blog = #{blog} AND (title LIKE '%#{search}%' OR body LIKE '%#{search}%' OR user.name LIKE '%#{search}%') LIMIT #{(page - 1) * page_size}, #{page_size + 1};")
+    # searching categories
+    categoryPost = Post.find_by_sql("SELECT * FROM post_category INNER JOIN category ON post_category.category = category.id
+      WHERE category.name = '#{search}' ORDER BY post_category.post DESC LIMIT 1;").first
+    Post.find_by_sql("SELECT * FROM post INNER JOIN post_category ON post.id = post_category.post WHERE
+    post.id = #{categoryPost.post};")
 
+    Post.find_by_sql("SELECT * FROM post INNER JOIN user ON post.author = user.id WHERE blog = #{blog} AND (title LIKE '%#{search}%' OR body LIKE '%#{search}%' OR user.name LIKE '%#{search}%') LIMIT #{(page - 1) * page_size}, #{page_size + 1};")
   end
 
   def categories
