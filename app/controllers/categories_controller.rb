@@ -15,10 +15,6 @@ class CategoriesController < ApplicationController
     redirect_to "/blogs/#{params[:blog_id]}/posts/#{params[:post_id]}"
   end
 
-  def search
-    category.PostCategory.find_by_sql("SELECT post FROM post_category WHERE post = #{params[:id]}")
-    redirect_to "/blogs/#{params[:blog_id]}/posts?filter=#{category.post}"
-  end
 
   private
   def post_category_params

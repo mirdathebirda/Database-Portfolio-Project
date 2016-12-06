@@ -32,6 +32,7 @@ class BlogsController < ApplicationController
     redirect_to "/blogs/#{params[:id]}"
   end
 
+
 private
 
   def blog_params

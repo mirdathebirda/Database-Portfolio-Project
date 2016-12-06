@@ -1,4 +1,11 @@
 
+<div class="search-category">
+<%= form_tag(blog_posts_path, method: "get") do %>
+  <%= label_tag(:q, "Filter") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search", :name => nil) %>
+<% end %>
+</div>
 
 
 <% if current_user && @post.id == current_user.id %>

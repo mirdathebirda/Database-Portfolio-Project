@@ -3,6 +3,10 @@ class PostsController < ApplicationController
     @post = Post.find_by_sql("SELECT * FROM post where id = #{params[:id]};").first
   end
 
+  def index
+    @post = Post.find_by_sql("SELECT * FROM post WHERE title = '#{params[:q]}';").first
+  end
+
   def new
   end
 
@@ -23,6 +27,11 @@ class PostsController < ApplicationController
     Post.connection.execute("UPDATE post SET #{updates} WHERE id = #{params[:id]};")
     redirect_to "/blogs/#{params[:blog_id]}/posts/#{params[:id]}"
   end
+
+
+
+
+
 
 private
 

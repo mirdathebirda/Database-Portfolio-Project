@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+
   root 'home#index'
 
 #mapping of url to controller
@@ -11,11 +13,12 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
 
   resources :blogs do
-    resources :categories, only: [:search]
+
     resources :posts do
       #except: :new, :edit -- dont make routes for these commands
       resources :comments, only: [:create, :update, :destroy]
-      resources :categories, only: [:create, :destroy, :search]
+      resources :categories, only: [:create, :destroy, :get]
+      resources :search, only: [:post, :get]
 
     end
   end
