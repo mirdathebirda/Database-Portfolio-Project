@@ -1,5 +1,5 @@
 <% if @posts.present? %>
-<%= render @posts %>
+<%= render "/blogs/#{params[:blog_id]}/posts/#{@posts}" %>
 <% else %>
 <p>There are no posts containing the term(s)
     <%= params[:search] %>.</p>
