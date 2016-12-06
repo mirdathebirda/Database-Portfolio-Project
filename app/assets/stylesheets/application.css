@@ -11,11 +11,12 @@
  * It is generally better to create a new file per style scope.
  *
  *= require bootstrap
- *= require font-awesome
  *= require_tree .
  *= require_self
  */
 
+
+/* '=' require font-awesome ...after bootstrap
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('../assets/glyphicons-halflings-regular.eot');
@@ -34,4 +35,4 @@
        url('../assets/fontawesome-webfont.svg#glyphicons_halflingsregular') format('svg');
   font-weight: normal;
   font-style: normal;
-}
+}*/
