@@ -20,8 +20,14 @@ class Post < ApplicationRecord
   end
 
   def author_name
-    #IN SQL GET AUTHOR NAME
         author = User.find_by_sql("SELECT * FROM user WHERE id = #{self.author};").first
         author.name
+  end
+
+  def format_date
+    single_post =  User.find_by_sql("SELECT * FROM post WHERE id = #{self.id};").first
+    require 'date'
+    d = Date.parse(single_post.date.to_s)
+    d.strftime("%v")
   end
 end

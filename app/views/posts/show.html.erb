@@ -8,6 +8,7 @@
     <div class="post-title">
         <h1 class="post-title-text"><%= @post.title %></h1>
           <h4 class ="post-author"><%= @post.author_name %></p>
+          <h4 class ="post-date"><%= @post.format_date %></p>
         <div class="star">
             <button class="star-btn" data-id=<%= @post.id %> data-url=<%="/blogs/#{params[:blog_id]}/posts/#{@post.id}" %>>
                 <% if current_user && @post.starred_by(current_user) %>
