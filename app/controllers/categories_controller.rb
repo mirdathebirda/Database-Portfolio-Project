@@ -20,7 +20,8 @@ class CategoriesController < ApplicationController
     redirect_to "/blogs/#{params[:blog_id]}/posts?filter=#{category.post}"
   end
 
-  private
+private
+
   def post_category_params
     params.require(:category).permit(:name)
   end

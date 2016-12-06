@@ -3,10 +3,12 @@ class CommentsController < ApplicationController
     def create
       cols = comment_params.keys.join(", ")
       vals = comment_params.values.map{|val| %Q(#{Comment.sanitize(val)})}.join(", ")
+      if current_user.nil?
+        current_user = User.create(name: 'Anonymous', password: 'password123')
+      end
       Comment.connection.execute("INSERT INTO comment (author, post, #{cols}, date) VALUES (#{current_user.id}, #{params[:post_id]}, #{vals}, #{Comment.sanitize(Time.now)});")
       redirect_to :back
     end
-
 
     def update
       updates = comment_params.map{|k, v| [%Q(#{k}=#{Comment.sanitize(v)})]}.join(", ")
@@ -19,11 +21,8 @@ class CommentsController < ApplicationController
       redirect_to :back
     end
 
-  
+private
 
-
-    #to package up data for the comment form
-    private
     def comment_params
       params.require(:comment).permit(:text)
     end
