@@ -2,7 +2,8 @@ class Post < ApplicationRecord
   self.table_name = "post"
 
   def self.search(search)
-    where("title LIKE ?", "%#{search}%")
+    Post.find_by_sql("SELECT * FROM post WHERE title LIKE '%#{search}%' OR body LIKE '%#{search}%'")
+
   end
 
   def categories
