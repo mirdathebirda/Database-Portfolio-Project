@@ -1,5 +1,5 @@
 @import url( 'https://fonts.googleapis.com/css?family=Josefin+Sans');
-$josefin: 'Josefin Sans', sans-serif;
+$font-fam: 'Josefin Sans', sans-serif;
 
 body {
     // background-color: #000035;
@@ -10,6 +10,14 @@ body {
     background-size: cover;
 }
 
+.btn, .btn:hover, .btn:active {
+    background-color: #225555;
+    color: #f5f5dc;
+    font-family: $font-fam;
+    font-size: 14px;
+    text-align: center;
+}
+
 .navHeaderCollapse {
     background-color: #000035;
     width: 100%;
@@ -17,7 +25,7 @@ body {
     .brand,
     .nav .nav-tabs {
         color: #BBEEEE;
-        border-color: #000035; 
+        border-color: #000035;
     }
 }
 
@@ -38,7 +46,7 @@ body {
 }
 
 body {
-    font-family: $josefin;
+    font-family: $font-fam;
     color: #000035;
 }
 
