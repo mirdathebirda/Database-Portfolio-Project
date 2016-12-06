@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161127033042) do
+ActiveRecord::Schema.define(version: 20161206182118) do
 
   create_table "blog", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "owner",                                    null: false
@@ -36,11 +36,12 @@ ActiveRecord::Schema.define(version: 20161127033042) do
   end
 
   create_table "post", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "author",                    null: false
-    t.integer  "blog",                      null: false
-    t.string   "title",  limit: 52,         null: false
-    t.text     "body",   limit: 4294967295, null: false
-    t.datetime "date",                      null: false
+    t.integer  "author",                                    null: false
+    t.integer  "blog",                                      null: false
+    t.string   "title",      limit: 52,                     null: false
+    t.text     "body",       limit: 4294967295,             null: false
+    t.datetime "date",                                      null: false
+    t.integer  "star_count",                    default: 0, null: false
     t.index ["author"], name: "author", using: :btree
     t.index ["blog"], name: "blog", using: :btree
   end

@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   def show
-    page_size = 10
+    page_size = 5
     unless params[:page]
       params[:page] = 1
     end
@@ -14,7 +14,7 @@ class BlogsController < ApplicationController
   end
 
   def index
-    page_size = 10
+    page_size = 5
     unless params[:page]
       params[:page] = 1
     end

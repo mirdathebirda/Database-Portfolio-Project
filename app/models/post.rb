@@ -14,8 +14,4 @@ class Post < ApplicationRecord
   def starred_by(user)
     !Star.find_by_sql("SELECT * FROM star WHERE post = #{self.id} AND user = #{user.id} AND starred = true;").empty?
   end
-
-  def star_count
-    Star.find_by_sql("SELECT * FROM star WHERE post = #{self.id} AND starred = true;").length
-  end
 end
