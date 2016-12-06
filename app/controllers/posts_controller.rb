@@ -24,6 +24,11 @@ class PostsController < ApplicationController
     redirect_to "/blogs/#{params[:blog_id]}/posts/#{params[:id]}"
   end
 
+  def destroy
+    Post.connection.execute("DELETE FROM post WHERE id = #{params[:id]};")
+    redirect_to "/blogs/#{params[:blog_id]}"
+  end
+
 private
 
   def post_params

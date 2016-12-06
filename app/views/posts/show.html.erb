@@ -1,14 +1,22 @@
-
-
-
-<% if current_user && @post.id == current_user.id %>
-<div class="pull-right">
-    <%= link_to('Edit', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/edit", :class => 'btn btn-default')  %>
+<% if current_user && @post.author == current_user.id %>
+  <div class="pull-right">
+     <%= link_to('Edit', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/edit", :class => 'btn btn-default')  %>
+     <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}", method: :delete, :class => 'btn btn-danger')  %>
 </div>
 <% end %>
 <div class="post">
     <div class="post-title">
-        <h1><%= @post.title %></h1>
+        <h1 class="post-title-text"><%= @post.title %></h1>
+        <div class="star">
+            <button class="star-btn" data-id=<%= @post.id %> data-url=<%="/blogs/#{params[:blog_id]}/posts/#{@post.id}" %>>
+                <% if current_user && @post.starred_by(current_user) %>
+                    <i class="fa fa-star fa-lg"></i>
+                <% elsif current_user %>
+                    <i class="fa fa-star-o fa-lg"></i>
+                <% end %>
+            </button>
+            <span class="star-btn-text"><%= @post.star_count %></span>
+        </div>
     </div>
     <div class="post-content">
         <p><%= @post.body %></p>
@@ -34,7 +42,6 @@
     <%= link_to('Delete', "/blogs/#{params[:blog_id]}/posts/#{@post.id}/categories/#{category.id}", method: :delete, :class => 'btn btn-default') %>
       <% end %>
   </div>
-
 <% end %>
 
 <%= form_for :comment, url: "/blogs/#{params[:blog_id]}/posts/#{@post.id}/comments" do |f| %>

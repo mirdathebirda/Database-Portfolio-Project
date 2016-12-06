@@ -25,7 +25,17 @@
     <% @blog.posts.each do |post| %>
     <div class="col-md-6" id="post-card">
         <div class="post-title">
-            <h2><%= post.title %></h2>
+            <h2 class="post-title-text"><%= post.title %></h2>
+            <div class="star">
+                <button class="star-btn" data-url=<%= "/blogs/#{@blog.id}/posts/#{post.id}" %>>
+                    <% if current_user && post.starred_by(current_user) %>
+                        <i class="fa fa-star fa-lg"></i>
+                    <% elsif current_user %>
+                        <i class="fa fa-star-o fa-lg"></i>
+                    <% end %>
+                </button>
+                <span class="star-btn-text"><%= post.star_count %></span>
+            </div>
         </div>
         <div class="post-details">
             <h3><%= post.body %></h3>
