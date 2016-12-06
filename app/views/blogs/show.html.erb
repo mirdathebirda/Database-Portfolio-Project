@@ -40,7 +40,7 @@
             <div class="col-md-6" id="post-card">
                 <div class="post-title">
                     <h2 class="post-title-text"><%= post.title %></h2>
-                    <p class ="post-author"><%= post.author_name %></p>
+                    <p class ="post-author"><%= post.author_name %> | <%= post.format_date %></p>
                     <div class="star">
                         <button class="star-btn" data-url=<%= "/blogs/#{@blog.id}/posts/#{post.id}" %>>
                             <% if current_user && post.starred_by(current_user) %>
