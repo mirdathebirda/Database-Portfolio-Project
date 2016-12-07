@@ -1,12 +1,14 @@
 <div class="browse-blog">
-    <h1>BROWSE BLOGS </h1>
+    <h1>BROWSE BLOGS
+    </h1>
 
     <div class="blog-collection row">
         <% @blogs.each do |blog| %>
         <div class="blog-card">
             <div class="blog-title">
                 <h3><%=blog.title%></h3>
-                <h4>owned by: <%=blog.author_name%></h4>
+                <h4>owned by:
+                    <%=blog.author_name%></h4>
             </div>
             <div class="blog-description">
                 <h5><%= blog.description[0..300].gsub(/\s\w+\s*$/, '...') %></h5>
@@ -22,12 +24,12 @@
         <% end %>
     </div>
 
-    <div class="row">
-        <% if @has_prev %>
+    <div class="prev-next row">
+            <% if @has_prev %>
             <%= link_to "Prev", "#{request.env['PATH_INFO']}?page=#{params[:page].to_i - 1}", :class => "btn btn-default" %>
-        <% end %>
-        <% if @has_next %>
+            <% end %>
+            <% if @has_next %>
             <%= link_to "Next", "#{request.env['PATH_INFO']}?page=#{params[:page].to_i + 1}", :class => "btn btn-default pull-right" %>
-        <% end %>
+            <% end %>
     </div>
 </div>
