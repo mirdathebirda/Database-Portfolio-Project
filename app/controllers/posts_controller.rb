@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 end
 
   def create
-    if post_params[:title].blank? || params[:body].blank?
+    if post_params[:title].blank? || post_params[:body].blank?
       render(json: "Error: blank entries") and return
     end
 
@@ -32,7 +32,7 @@ end
   end
 
   def update
-    if post_params[:title].blank? || params[:body].blank?
+    if post_params[:title].blank? || post_params[:body].blank?
       render(json: "Error: blank entries") and return
     end
 

@@ -39,7 +39,7 @@ class BlogsController < ApplicationController
   end
 
   def create
-    if blog_params[:title].blank? || params[:description].blank?
+    if blog_params[:title].blank? || blog_params[:description].blank?
       render(json: "Error: blank entries") and return
     end
 
@@ -55,7 +55,7 @@ class BlogsController < ApplicationController
   end
 
   def update
-    if blog_params[:title].blank? || params[:description].blank?
+    if blog_params[:title].blank? || blog_params[:description].blank?
       render(json: "Error: blank entries") and return
     end
     
