@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   def self.search(search, blog, page_size, page)
     # searching categories
     category_post_ids = PostCategory.find_by_sql("SELECT * FROM post_category INNER JOIN category ON post_category.category = category.id
-      WHERE category.name LIKE '%#{search}%' ORDER BY post_category.post DESC;").map(&:post).uniq
+      INNER JOIN post ON post_category.post = post.id WHERE blog = #{blog} and category.name LIKE '%#{search}%' ORDER BY post_category.post DESC;").map(&:post).uniq
     if category_post_ids.empty?
       category_posts = []
     else
