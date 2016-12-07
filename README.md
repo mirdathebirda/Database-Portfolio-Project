@@ -1,29 +1,15 @@
-# README
-A database for project portfolio sites used to display personal projects to potential employers interested in our work. The database will store posts for projects along with the users who made the posts. It will also allow posts to have labels such as “personal project”, “hackathon”, etc. Additionally, posts can have comments from other users.
+# Medium-Rare: A Blogging App
+This blogging app allows users to maintain multiple blogs any topics they wish to post about. Posts are open to the public and can be starred and commented up. Additionally, posts can be tagged and searched for through a blog.
 
+## Demo
+A demo of the app can be found [here](https://vast-peak-35773.herokuapp.com/).
 
-This README would normally document whatever steps are necessary to get the application up and running.
-
-* Ruby version : 2.2.4
-* Rails version:  rails-5.0.0.1
-
-*
-
-* System dependencies
-
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-rake db:migrate
-rake db:rollback
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Setup Instructions 
+* Install Ruby, Rails 4+, and other dependencies
+* Run `bundle install` to install gems
+* Run `npm install` to install frontend dependencies
+* If you mysql database connection requires a password, create a file called `.env` on the root folder and add the line `DB_PASSWORD="[your password]"`
+* Run `rake db:create` to create the database
+* Run `rake db:migrate` to update the schema
+* Run `rake db:seed` to get default users and user roles
+* Run `rails s` to start the server and visit `localhost:3000` in a browser
