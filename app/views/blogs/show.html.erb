@@ -21,7 +21,9 @@
             <%= form_tag "/blogs/#{@blog.id}", id: "search-form", :method => 'get' do %>
             <p>
                 <%= text_field_tag :search, params[:search], placeholder: "Search for a Post" %>
-                <%= link_to('<i class="fa fa-search"></i>'.html_safe, "/blogs?search=#{:search}", :class => 'btn btn-default')  %>
+                <button type="submit" class="btn btn-default">
+                   <i class="fa fa-search"></i>
+                </button>
             </p>
             <% end %>
         </div>
