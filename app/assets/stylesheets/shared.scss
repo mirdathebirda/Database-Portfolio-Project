@@ -1,6 +1,8 @@
 @import url( 'https://fonts.googleapis.com/css?family=Josefin+Sans');
 $font-fam: 'Josefin Sans', sans-serif;
-
+head {
+  background-color: #000035; 
+}
 body {
     // background-color: #000035;
     background: url("./background3.jpg") no-repeat center center fixed;
